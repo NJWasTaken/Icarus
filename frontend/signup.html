@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css"> 
+    <title>Create New Account</title>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>Create New Account</h1>
+            <p>Already Registered? <a href="login.html">Login</a></p>
+        </div>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Jara Martins"
+                    required
+                >
+                <div class="error" id="nameError">Please enter your name</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="hello@reallygreatsite.com"
+                    required
+                >
+                <div class="error" id="emailError">Please enter a valid email</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    placeholder="••••••"
+                    required
+                >
+                <div class="error" id="passwordError">Password is required</div>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input 
+                    type="date" 
+                    id="dob" 
+                    name="dob"
+                    required
+                >
+                <div class="error" id="dobError">Please enter your date of birth</div>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.error').forEach(error => {
+                error.style.display = 'none';
+            });
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const dob = document.getElementById('dob').value;
+            
+            // Validate
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!email || !email.includes('@')) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!password) {
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!dob) {
+                document.getElementById('dobError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // For demonstration purposes, log the form data
+                console.log('Form submitted:', { name, email, password, dob });
+                
+                // Here you would typically send the data to a server
+                alert('Account created successfully!');
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
