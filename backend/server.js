@@ -33,14 +33,14 @@ app.post("/api/expenses", async (req,res)=>{
 
 app.delete("/api/expenses/:id", async (req,res) => {
     const {id} = req.params;
-    console.log("id:", id);
+    // console.log("id:", id);
 
     try{
-        await Expense.findOneAndDelete(id);
+        await Expense.findByIdAndDelete(id);
         res.status(200).json({ success: true, message: "Expense deleted" });
     } catch (error) {
-        console.error("Expense not found");
-        res.catch(404).json({ success: false, message: "Expense not found" });
+        // console.error("Expense not found");
+        res.status(404).json({ success: false, message: "Expense not found" });
     }
 });
 
