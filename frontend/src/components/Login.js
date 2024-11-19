@@ -1,13 +1,18 @@
-// LoginForm.js
 import React, { useState } from 'react';
-import './LoginForm.css';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth } from './contexts/AuthContext';
+import './css/LoginForm.css';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: ''
   });
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,88 +22,86 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setError('');
+    setLoading(true);
+    
+    try {
+      const response = await axios.post('http://localhost:5000/api/accounts/login', formData);
+      if (response.data.success) {
+        login(response.data.user);
+        navigate('/');
+      }
+    } catch (error) {
+      setError(error.response?.data?.message || 'Login failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return React.createElement('div', { className: 'login-container' },
-    React.createElement('div', { className: 'login-form' }, [
-      React.createElement('h1', { key: 'title' }, 'Welcome back, Login below'),
-      React.createElement('p', { 
-        key: 'register',
-        className: 'register-link' 
-      }, 'Not Registered? Create New Account'),
-      
-      React.createElement('form', { 
-        key: 'form',
-        onSubmit: handleSubmit 
-      }, [
-        // Name Field
-        React.createElement('div', { 
-          key: 'name-group',
-          className: 'form-group' 
-        }, [
-          React.createElement('label', { 
-            key: 'name-label',
-            htmlFor: 'name' 
-          }, 'NAME'),
-          React.createElement('input', {
-            key: 'name-input',
-            type: 'text',
-            id: 'name',
-            name: 'name',
-            value: formData.name,
-            onChange: handleChange
-          })
-        ]),
+  return (
+    <div className="login-page-container">
+      <div className="login-content">
+        <Link to="/" className="login-logo">
+          καιρος
+        </Link>
+        
+        <div className="login-form-container">
+          <h1>Welcome Back</h1>
+          <p className="login-subtitle">Track your student life journey with Kyros</p>
+          
+          {error && <div className="error-message">{error}</div>}
+          
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="form-group">
+              <label htmlFor="email">EMAIL</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Enter your email"
+                disabled={loading}
+              />
+            </div>
 
-        // Email Field
-        React.createElement('div', { 
-          key: 'email-group',
-          className: 'form-group' 
-        }, [
-          React.createElement('label', { 
-            key: 'email-label',
-            htmlFor: 'email' 
-          }, 'EMAIL'),
-          React.createElement('input', {
-            key: 'email-input',
-            type: 'email',
-            id: 'email',
-            name: 'email',
-            value: formData.email,
-            onChange: handleChange
-          })
-        ]),
+            <div className="form-group">
+              <label htmlFor="password">PASSWORD</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                placeholder="Enter your password"
+                disabled={loading}
+              />
+            </div>
 
-        // Password Field
-        React.createElement('div', { 
-          key: 'password-group',
-          className: 'form-group' 
-        }, [
-          React.createElement('label', { 
-            key: 'password-label',
-            htmlFor: 'password' 
-          }, 'PASSWORD'),
-          React.createElement('input', {
-            key: 'password-input',
-            type: 'password',
-            id: 'password',
-            name: 'password',
-            value: formData.password,
-            onChange: handleChange
-          })
-        ]),
+            <button 
+              type="submit" 
+              className="login-button"
+              disabled={loading}
+            >
+              {loading ? 'LOGGING IN...' : 'LOG IN'}
+            </button>
+          </form>
 
-        // Submit Button
-        React.createElement('button', {
-          key: 'submit-button',
-          type: 'submit',
-          className: 'login-button'
-        }, 'LOG IN')
-      ])
-    ])
+          <div className="form-footer">
+            <p>
+              Don't have an account?{' '}
+              <Link to="/register" className="register-link">
+                Sign up
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

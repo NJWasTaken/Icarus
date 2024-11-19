@@ -1,0 +1,63 @@
+/* Update these styles in your Homepage.css file */
+
+.profile-menu {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #cbe1ff;
+  transition: color 0.3s ease;
+}
+
+.profile-button:hover {
+  color: #ffc2cc;
+}
+
+.profile-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  background-color: #261d45fa;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  z-index: 50;
+  overflow: hidden; /* This ensures the hover background stays within the rounded corners */
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  color: #cbe1ff;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: none; /* Prevent underline on links */
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #362d55;
+  color: #ffc2cc;
+}
+
+/* Add a subtle separator between dropdown items */
+.dropdown-item:not(:last-child) {
+  border-bottom: 1px solid #362d55;
+}

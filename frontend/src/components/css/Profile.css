@@ -1,0 +1,118 @@
+/* Profile.css */  
+  .profile1-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profile1-form-container {
+    background-color: #261d45af;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    padding-left: 2rem;
+    padding-right: 4rem;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    color: white;
+    width: 900px;
+    margin: 2rem 0;
+  }
+  
+  .profile1-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .profile1-form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile1-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ff9d7d;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .profile1-form-input, 
+  .profile1-form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border: 1px solid #4a4a6a;
+    background-color: #362a5e;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .profile1-form-input:focus, 
+  .profile1-form-textarea:focus {
+    outline: none;
+    border-color: #7554e2;
+    box-shadow: 0 0 0 3px rgba(117, 84, 226, 0.2);
+  }
+  
+  .profile1-form-input:disabled, 
+  .profile1-form-textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .profile1-form-textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .profile1-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .profile1-button1 {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    background-color: #ff1641;
+    color: white;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .profile1-button1:hover {
+    background-color: #ff4a13;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  }
+  
+  .profile1-button1:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .profile1-button1.cancel-button {
+    background-color: #261d45;
+    color: #fff;
+  }
+  
+  .profile1-button1.cancel-button:hover {
+    background-color: #362a5e;
+  }
+  
+  .profile1-error-message {
+    background-color: #ff1641;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }

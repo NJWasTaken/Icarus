@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Trash2, Edit2, ChevronDown } from 'lucide-react';
-import './ExpenseTracker.css';
+import Navigation from './contexts/Nav';
+import './css/ExpenseTracker.css';
+import { useAuth } from './contexts/AuthContext';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -30,17 +31,8 @@ const ExpenseTracker = () => {
     const [error, setError] = useState(null);
     const [newExpense, setNewExpense] = useState({ name: '', amount: '', date: '' });
     const [editingExpense, setEditingExpense] = useState(null);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedMonth, setSelectedMonth] = useState('All');
-  
-    const navigation = [
-      { name: 'Home', path: '/' },
-      { name: 'Expenses', path: '/expenses' },
-      { name: 'Login', path: '/login' },
-      { name: 'Calendar', path: '/calendar'},
-      { name: 'Events', path: '/events'},
-      { name: 'Sticky Wall', path: '/todo'}
-    ];
+    const { user } = useAuth();
 
     // Fetch expenses
     useEffect(() => {
@@ -150,54 +142,10 @@ const ExpenseTracker = () => {
             </div>
           )}
 
-          <nav className="navbar">
-            <div className="nav-container">
-            <Link to="/" className="logo">
-                καιρος
-            </Link>
-      
-              <div className="nav-links">
-                {navigation.map((item) => (
-                  <Link key={item.name} to={item.path} className="nav-link">
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-      
-              <button
-                className="mobile-menu-button"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-              >
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="3" y1="12" x2="21" y2="12"></line>
-                  <line x1="3" y1="6" x2="21" y2="6"></line>
-                  <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-              </button>
-            </div>
-      
-            <div className={`mobile-menu ${isMenuOpen ? "" : "hidden"}`}>
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="nav-link"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </nav>
+          <Navigation 
+            isAuthenticated={!!user} 
+            userEmail={user?.email}
+          />
       
           <div className="expense-tracker-container">
             <h1 className="expense-tracker-title">Expense Tracker</h1>
