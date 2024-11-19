@@ -21,10 +21,11 @@
 }
 
 .expense-graph-container {
-  background-color: #fff;
-  border-radius: 0.75rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  padding-right: 2rem;
+  padding-top: 1rem;
   margin-bottom: 2rem;
   transition: transform 0.3s ease;
 }
@@ -34,7 +35,7 @@
 }
 
 .expense-form {
-  background-color: #fff;
+  background-color: #ffffffaf;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -195,7 +196,7 @@ width: 100%;
 padding: 0.75rem 1rem;
 border: 1px solid #e2e8f0;
 border-radius: 0.5rem;
-background-color: white;
+background-color: rgba(255, 255, 255, 0.867);
 font-size: 1rem;
 cursor: pointer;
 transition: border-color 0.3s ease;
@@ -229,4 +230,38 @@ color: #718096;
 padding: 2rem;
 background-color: #f8f9fa;
 border-radius: 0.75rem;
+}
+
+.custom-tooltip {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid #edf2f7;
+}
+
+.tooltip-date {
+  font-size: 0.875rem;
+  color: #666666;
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.tooltip-expense {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.tooltip-label {
+  color: #666666;
+  margin-right: 0.5rem;
+}
+
+.tooltip-value {
+  color: #443670;
+  font-weight: 600;
 }

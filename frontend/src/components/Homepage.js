@@ -10,7 +10,8 @@ const Homepage = () => {
     { name: 'Expenses', path: '/expenses' },
     { name: 'Login', path: '/login' },
     { name: 'Calendar', path: '/calendar'},
-    { name: 'Events', path: '/events'}
+    { name: 'Events', path: '/events'},
+    { name: 'Sticky Wall', path: '/todo'}
   ];
 
   const features = [
@@ -20,7 +21,7 @@ const Homepage = () => {
     },
     {
       title: "Get it Together",
-      description: "Organize your life by prioritizing your tasks."
+      description: "Organize your life by prioritizing your tasks and keeping reminders."
     },
     {
       title: "What's New?",
@@ -28,7 +29,11 @@ const Homepage = () => {
     },
     {
       title: "Looking Ahead",
-      description: "Plan what's next by updating your calendar."
+      description: "Plan what's next by updating your calendar and always looking at the big picture."
+    },
+    {
+      title: "Identify Yourself",
+      description: "Manage your own personal profile and keep track of yourself throughout your student life."
     },
   ];
 
@@ -37,7 +42,7 @@ const Homepage = () => {
       <nav className="navbar">
         <div className="nav-container">
           <Link to="/" className="logo">
-            Alakazam
+            καιρος
           </Link>
           
           <div className="nav-links">
@@ -90,10 +95,10 @@ const Homepage = () => {
       <main className="main-content">
         <section className="hero-section">
           <h1 className="hero-title">
-            Welcome to Alakazam!
+            Welcome to Kyros
           </h1>
           <p className="hero-description">
-            Keep track of your student life with a to-do list, calendar planner, expense tracker and more!
+            Keep track of your student life with a to-do list, calendar planner, expense tracker and more.
           </p>
           <Link to="/login" className="get-started-btn">
             Get Started

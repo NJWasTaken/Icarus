@@ -2,8 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Trash2, Edit2, PlusCircle, ChevronDown } from 'lucide-react';
+import { Trash2, Edit2, ChevronDown } from 'lucide-react';
 import './ExpenseTracker.css';
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="tooltip-date">{label}</p>
+        <p className="tooltip-expense">
+          <span className="tooltip-label">Name:</span>
+          <span className="tooltip-value">{payload[0].payload.name}</span>
+        </p>
+        <p className="tooltip-expense">
+          <span className="tooltip-label">Amount:</span>
+          <span className="tooltip-value">Rs.{payload[0].value.toFixed(2)}</span>
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
 
 const ExpenseTracker = () => {
     const [expenses, setExpenses] = useState([]);
@@ -19,7 +38,8 @@ const ExpenseTracker = () => {
       { name: 'Expenses', path: '/expenses' },
       { name: 'Login', path: '/login' },
       { name: 'Calendar', path: '/calendar'},
-      { name: 'Events', path: '/events'}
+      { name: 'Events', path: '/events'},
+      { name: 'Sticky Wall', path: '/todo'}
     ];
 
     // Fetch expenses
@@ -60,13 +80,12 @@ const ExpenseTracker = () => {
     // Prepare data for spending over time graph
     const graphData = filteredExpenses
     .sort((a, b) => new Date(a.date) - new Date(b.date))
-    .map((expense, index, arr) => ({
-        name: new Date(expense.date).toLocaleDateString(),
-        amount: parseFloat(expense.amount),
-        cumulative: arr
-        .slice(0, index + 1)
-        .reduce((sum, e) => sum + parseFloat(e.amount), 0)
+    .map((expense) => ({
+      date: new Date(expense.date).toLocaleDateString(),
+      amount: parseFloat(expense.amount),
+      name: expense.name // Include expense name in the data
     }));
+
 
     // Calculate total spending for the selected month
     const totalSpending = filteredExpenses.reduce((sum, expense) => 
@@ -119,15 +138,12 @@ const ExpenseTracker = () => {
 
     return (
         <div className="page-container">
-          {/* Render loading state */}
           {loading && (
             <div className="loading-spinner">
               <div className="spinner"></div>
               <p>Loading expenses...</p>
             </div>
           )}
-
-          {/* Render error state */}
           {error && (
             <div className="error-message">
               {error}
@@ -136,9 +152,9 @@ const ExpenseTracker = () => {
 
           <nav className="navbar">
             <div className="nav-container">
-              <Link to="/" className="logo">
-                Alakazam
-              </Link>
+            <Link to="/" className="logo">
+                καιρος
+            </Link>
       
               <div className="nav-links">
                 {navigation.map((item) => (
@@ -213,16 +229,41 @@ const ExpenseTracker = () => {
             <div className="expense-graph-container">
               {graphData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={graphData}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
+                  <LineChart 
+                    data={graphData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+                  >
+                    <CartesianGrid 
+                      strokeDasharray="3 3" 
+                      stroke="#e0e0e0"
+                      vertical={false}
+                    />
+                    <XAxis 
+                      dataKey="date"
+                      stroke="#000"
+                      tick={{ fill: '#000', fontSize: 12 }}
+                      tickLine={{ stroke: '#000' }}
+                    />
+                    <YAxis 
+                      stroke="#000"
+                      tick={{ fill: '#000', fontSize: 12 }}
+                      tickLine={{ stroke: '#000' }}
+                      axisLine={{ stroke: '#000' }}
+                    />
+                    <Tooltip content={<CustomTooltip />} />
                     <Line
                       type="monotone"
                       dataKey="amount"
                       stroke="#443670"
                       strokeWidth={3}
+                      dot={{ fill: '#443670', strokeWidth: 2, r: 4 }}
+                      activeDot={{ 
+                        fill: '#443670',
+                        stroke: '#fff',
+                        strokeWidth: 2,
+                        r: 6,
+                        boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+                      }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
@@ -284,8 +325,7 @@ const ExpenseTracker = () => {
                 />
               </div>
               <button type="submit" className="expense-form-button">
-                <PlusCircle className="mr-2" />
-                {editingExpense ? "Update Expense" : "Add Expense"}
+                {editingExpense ? "-\tUpdate Expense" : "+\tAdd Expense"}
               </button>
             </form>
       

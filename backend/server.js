@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 import expenseRoutes from "./routes/expense.route.js";
+import accountRoutes from "./routes/account.route.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ const PORT = process.env.PORT;
 app.use(express.json()); // middleware
 
 app.use("/api/expenses",expenseRoutes);
+app.use("/api/accounts",accountRoutes)
 
 app.listen(5000, ()=>{
     connectDB();
