@@ -33,6 +33,24 @@ const Homepage = () => {
     },
   ];
 
+  const devs = [
+    {
+      img: "/noel.jpeg",
+      title: "Noel Jose",
+      link: "https://www.linkedin.com/in/nj05/"
+    },
+    {
+      img: "/prachita.jpg",
+      title: "Prachita Chauhan",
+      link: "https://www.linkedin.com/in/prachita-chauhan-525835335/"
+    },
+    {
+      img: "/parineetha.jpeg", 
+      title: "Parineetha KR",
+      link: "https://www.linkedin.com/in/parineetha-kr-b88524296/"
+    },
+  ]
+
   return (
     <div className="page-container">
       <Navigation 
@@ -77,6 +95,19 @@ const Homepage = () => {
             </div>
           ))}
         </div>
+        <section className="dev-section">
+          <h1 className="dev-title">Meet the Devs</h1>
+          <div className="devs-grid">
+            {devs.map((dev, index) => (
+              <div key={index} className="dev-card">
+                <a href={dev.link} target="_blank" rel="noopener noreferrer">
+                  <img src={dev.img} alt={dev.title} className="dev-img" />
+                </a>
+                <p className="dev-name">{dev.title}</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );
