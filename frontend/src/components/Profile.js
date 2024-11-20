@@ -70,30 +70,6 @@ const Profile = () => {
     }
   };
 
-//   async (e) => {
-//     e.preventDefault();
-//     try {
-//     const response = await axios.put(`http://localhost:5000/api/expenses/${editingExpense._id}`, editingExpense);
-//     if (response.data.success) {
-//         setExpenses(expenses.map(exp => 
-//         exp._id === editingExpense._id ? response.data.data : exp
-//         ));
-//         setEditingExpense(null);
-//     }
-//     } catch (error) {
-//     console.error('Error updating expense:', error);
-//     setError('Failed to update expense');
-//     }
-// };
-
-  const handleCancel = () => {
-    setFormData(originalData);
-    setIsEditing(false);
-    setError('');
-  };
-
-  const hasChanges = JSON.stringify(formData) !== JSON.stringify(originalData);
-
   return (
     <div className="page-container">
       <Navigation isAuthenticated={!!user} />
@@ -166,35 +142,6 @@ const Profile = () => {
                   className="profile1-form-textarea"
                   placeholder="Tell us about yourself"
                 />
-              </div>
-
-              <div className="profile1-actions">
-                {!isEditing ? (
-                  <button 
-                    type="button" 
-                    className="profile1-button1"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    EDIT PROFILE
-                  </button>
-                ) : (
-                  <>
-                    <button 
-                      type="submit" 
-                      className="profile1-button1"
-                      disabled={loading || !hasChanges}
-                    >
-                      {loading ? 'SAVING...' : 'SAVE CHANGES'}
-                    </button>
-                    <button 
-                      type="button" 
-                      className="profile1-button cancel-button"
-                      onClick={handleCancel}
-                    >
-                      CANCEL
-                    </button>
-                  </>
-                )}
               </div>
             </form>
           </div>

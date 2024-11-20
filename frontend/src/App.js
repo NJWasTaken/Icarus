@@ -8,7 +8,9 @@ import Todo from './components/Todo.js';
 import Register from './components/Register.js';
 import { AuthProvider } from './components/contexts/AuthContext.js';
 import Profile from './components/Profile.js';
-import Events from './components/Events.js'
+import Events from './components/Events.js';
+import AttendanceCalculator from './components/AttendanceCalculator.js';
+import CGPACalculator from './components/CGPACalculator.js';
 
 const App = () => {
     return (
@@ -23,6 +25,8 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/events' element={<Events />} />
+                    <Route path='/cgpa-calculator' element={<CGPACalculator />} />
+                    <Route path='/attendance-calculator' element={<AttendanceCalculator />} />
                 </Routes>
             </Router>
         </AuthProvider>

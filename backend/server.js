@@ -11,6 +11,7 @@ import expenseRoutes from "./routes/expense.route.js";
 import accountRoutes from "./routes/account.route.js";
 import eventRoutes from "./routes/event.route.js";
 import calendarRoutes from "./routes/calendar.route.js";
+import todoRoutes from "./routes/todo.route.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/api/expenses",expenseRoutes);
 app.use("/api/accounts",accountRoutes);
 app.use("/api/events",eventRoutes);
 app.use("/api/calendar",calendarRoutes);
+app.use("/api/todo",todoRoutes);
 
 app.listen(5000, ()=>{
     connectDB();

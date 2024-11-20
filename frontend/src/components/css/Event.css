@@ -11,7 +11,7 @@
     font-weight: bold;
     margin-bottom: 2rem;
     text-align: center;
-    color: #443670;
+    color: #ff1641
 }
 
 .tag-filter-container {
@@ -113,9 +113,10 @@
     transform: translateY(-2px);
 }
 
-.event-list {
+.event-list1 {
     list-style-type: none;
     padding: 0;
+    scrollbar-width: 0px;
 }
 
 .event-item {

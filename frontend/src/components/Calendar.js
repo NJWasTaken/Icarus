@@ -30,11 +30,11 @@ const Calendar = () => {
   const [selectedMonth, setSelectedMonth] = useState(currentDate.getMonth());
   const [selectedYear, setSelectedYear] = useState(currentDate.getFullYear());
 
-  const EVENT_TYPES = ['reminder', 'deadline', 'regular'];
+  const EVENT_TYPES = ['reminder', 'deadline', 'other'];
   const TYPE_COLORS = {
     reminder: 'event1-reminder',
     deadline: 'event1-deadline',
-    regular: 'event1-regular'
+    other: 'event1-regular'
   };
 
   useEffect(() => {
@@ -195,6 +195,7 @@ const Calendar = () => {
                 <X size={16} />
               </button>
             </div>
+            <p className='event-description-title'><b>{event.name}</b></p>
             <p className="event-description">{event.description}</p>
           </div>
         ))}

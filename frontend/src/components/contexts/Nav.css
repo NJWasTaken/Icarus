@@ -1,11 +1,11 @@
 /* Update these styles in your Homepage.css file */
 
-.profile-menu {
+.profile-menu-nav {
   position: relative;
   margin-left: 1rem;
 }
 
-.profile-button {
+.profile-button-nav {
   background: none;
   border: none;
   cursor: pointer;
@@ -15,21 +15,21 @@
   transition: color 0.3s ease;
 }
 
-.profile-button:hover {
+.profile-button-nav:hover {
   color: #ffc2cc;
 }
 
-.profile-icon {
+.profile-icon-nav {
   width: 24px;
   height: 24px;
 }
 
-.profile-dropdown {
+.profile-dropdown-nav {
   position: absolute;
   right: 0;
   top: 100%;
   margin-top: 0.5rem;
-  background-color: #261d45fa;
+  background-color: #261d45;
   border-radius: 0.375rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   min-width: 160px;
@@ -37,7 +37,7 @@
   overflow: hidden; /* This ensures the hover background stays within the rounded corners */
 }
 
-.dropdown-item {
+.dropdown-item-nav {
   display: block;
   width: 100%;
   padding: 0.75rem 1rem;
@@ -52,12 +52,12 @@
   transition: all 0.2s ease;
 }
 
-.dropdown-item:hover {
+.dropdown-item-nav:hover {
   background-color: #362d55;
   color: #ffc2cc;
 }
 
 /* Add a subtle separator between dropdown items */
-.dropdown-item:not(:last-child) {
+.dropdown-item-nav:not(:last-child) {
   border-bottom: 1px solid #362d55;
 }

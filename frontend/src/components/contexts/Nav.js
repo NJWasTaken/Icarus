@@ -7,6 +7,7 @@ import './Nav.css';
 const Navigation = ({ isAuthenticated }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isCalcMenuOpen, setIsCalcMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { logout } = useAuth();
   
@@ -15,7 +16,7 @@ const Navigation = ({ isAuthenticated }) => {
     { name: 'Expenses', path: '/expenses' },
     { name: 'Calendar', path: '/calendar'},
     { name: 'Events', path: '/events'},
-    { name: 'Sticky Wall', path: '/todo'}
+    { name: 'Sticky Wall', path: '/todo'},
   ];
 
   const handleLogout = async () => {
@@ -44,28 +45,41 @@ const Navigation = ({ isAuthenticated }) => {
               {item.name}
             </Link>
           ))}
-          
+          <div className='nav-link'>
+            <div onClick={() =>setIsCalcMenuOpen(!isCalcMenuOpen)}>Calculator</div>
+            {isCalcMenuOpen && (
+                <div className="profile-dropdown-nav">
+                  <Link to="/cgpa-calculator" className="dropdown-item-nav">
+                    CGPA
+                  </Link>
+                  <Link to="/attendance-calculator" className="dropdown-item-nav">
+                    Attendance
+                  </Link>
+                </div>
+              )}
+          </div>
+
           {!isAuthenticated ? (
             <Link to="/login" className="nav-link">
               Login
             </Link>
           ) : (
-            <div className="profile-menu">
+            <div className="profile-menu-nav">
               <button
-                className="profile-button"
+                className="profile-button-nav"
                 onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
               >
-                <UserCircle className="profile-icon" />
+                <UserCircle className="profile-icon-nav" />
               </button>
               
               {isProfileMenuOpen && (
-                <div className="profile-dropdown">
-                  <Link to="/profile" className="dropdown-item">
+                <div className="profile-dropdown-nav">
+                  <Link to="/profile" className="dropdown-item-nav">
                     Profile
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="dropdown-item"
+                    className="dropdown-item-nav"
                   >
                     Logout
                   </button>

@@ -97,7 +97,7 @@ const Events = () => {
                     {error}
                 </div>
             )}
-
+        
             <Navigation 
                 isAuthenticated={!!user} 
                 userEmail={user?.email}
@@ -178,7 +178,7 @@ const Events = () => {
                         </p>
                     </div>
                 ) : (
-                    <ul className="event-list">
+                    <ul className="event-list1">
                         {filteredEvents.map((event) => (
                             <li key={event._id} className="event-item">
                                 <div className="event-details">
