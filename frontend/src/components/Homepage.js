@@ -13,7 +13,7 @@ const Homepage = () => {
       description: "Log and categorize your daily expenses with ease."
     },
     {
-      title: "Get it Together",
+      title: "Lock in",
       description: "Organize your life by prioritizing your tasks and keeping reminders."
     },
     {

@@ -83,6 +83,7 @@
   align-items: center;
   justify-content: center;
   height: 800px;
+  color: #000
 }
 
 .spinner {
@@ -204,7 +205,7 @@ transition: border-color 0.3s ease;
 
 .month-dropdown:focus {
 outline: none;
-border-color: #443670;
+border-color: #ffffff;
 }
 
 .dropdown-icon {

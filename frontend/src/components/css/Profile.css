@@ -7,12 +7,12 @@
   }
   
   .profile1-form-container {
-    background-color: #261d45af;
+    background-color: #261d453b;
     border-radius: 0.75rem;
     padding: 2rem;
     padding-left: 2rem;
     padding-right: 4rem;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 4px 12px rgba(13, 36, 85, 0.508);
     color: white;
     width: 900px;
     margin: 2rem 0;
@@ -32,9 +32,11 @@
   .profile1-form-label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #ff9d7d;
+    color: #362a5e;
     font-weight: 600;
     text-transform: uppercase;
+    text-align: left;
+    padding-left: 0.5rem;
   }
   
   .profile1-form-input, 
@@ -78,7 +80,7 @@
     justify-content: center;
     padding: 0.75rem 1.5rem;
     border-radius: 0.375rem;
-    background-color: #ff1641;
+    background-color: #ff1641c3;
     color: white;
     font-weight: 500;
     border: none;
@@ -87,7 +89,7 @@
   }
   
   .profile1-button1:hover {
-    background-color: #ff4a13;
+    background-color: #ff4a13bd;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
   }
