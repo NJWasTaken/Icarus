@@ -96,7 +96,7 @@ const Homepage = () => {
           ))}
         </div>
         <section className="dev-section">
-          <h1 className="dev-title">Meet the Devs</h1>
+          <h1 className="dev-title">Meet the FoolStackDevelopers</h1>
           <div className="devs-grid">
             {devs.map((dev, index) => (
               <div key={index} className="dev-card">
