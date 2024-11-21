@@ -33,14 +33,14 @@ const ExpenseTracker = () => {
     const [editingExpense, setEditingExpense] = useState(null);
     const [selectedMonth, setSelectedMonth] = useState('All');
     const { user } = useAuth();
-    const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+
     // Fetch expenses
     useEffect(() => {
         const fetchExpenses = async () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await axios.get(`${API_BASE_URL}/expenses`);
+            const response = await axios.get('http://localhost:5000/api/expenses');
             if (response.data.success) {
             const sortedExpenses = response.data.data.sort((a, b) => new Date(a.date) - new Date(b.date));
             setExpenses(sortedExpenses);
@@ -87,7 +87,7 @@ const ExpenseTracker = () => {
     const handleAddExpense = async (e) => {
         e.preventDefault();
         try {
-        const response = await axios.post(`${API_BASE_URL}/expenses`, newExpense);
+        const response = await axios.post('http://localhost:5000/api/expenses', newExpense);
         if (response.data.success) {
             setExpenses([...expenses, response.data.data]);
             setNewExpense({ name: '', amount: '', date: '' });
@@ -102,7 +102,7 @@ const ExpenseTracker = () => {
     const handleUpdateExpense = async (e) => {
         e.preventDefault();
         try {
-        const response = await axios.put(`${API_BASE_URL}/expenses/${editingExpense._id}`, editingExpense);
+        const response = await axios.put(`http://localhost:5000/api/expenses/${editingExpense._id}`, editingExpense);
         if (response.data.success) {
             setExpenses(expenses.map(exp => 
             exp._id === editingExpense._id ? response.data.data : exp
@@ -118,7 +118,7 @@ const ExpenseTracker = () => {
     // Delete expense
     const handleDeleteExpense = async (id) => {
         try {
-        const response = await axios.delete(`${API_BASE_URL}/expenses/${id}`);
+        const response = await axios.delete(`http://localhost:5000/api/expenses/${id}`);
         if (response.data.success) {
             setExpenses(expenses.filter(exp => exp._id !== id));
         }
